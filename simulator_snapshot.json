@@ -1,0 +1,16 @@
+{
+  "entries": [
+    {
+      "process_type": 10,
+      "group_name": "openshift",
+      "processes": [
+        {
+          "process_name": "unknown",
+          "properties": {
+            "ListeningPorts": "8080"
+          }
+        }
+      ]
+    }
+  ]
+}

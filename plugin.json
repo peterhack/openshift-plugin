@@ -1,0 +1,503 @@
+{
+  "name": "custom.python.openshift_plugin",
+  "version": "1.1",
+  "type": "python",
+  "entity": "PROCESS_GROUP_INSTANCE",
+  "processTypeNames": ["JAVA"],
+  "source": {
+    "package": "openshift_plugin",
+    "className": "DemoPlugin",
+    "install_requires": ["requests>=2.6.0"],
+    "activation": "Singleton"
+  },
+  "metrics": [
+    {
+      "timeseries": {
+        "key": "cpus_percent",
+        "unit": "Percent",
+		"displayname": "Master CPUs Percent"
+      },
+	  "source": {
+		"stat": "master/cpus_percent"
+	  },
+	  "alert_settings": [
+			{
+				"alert_id": "master_cpus_percent",
+				"event_type": "PERFORMANCE_EVENT",
+				"event_name": "High master cpus percent",
+				"description": "The {metricname} of {severity} is {alert_condition} the threshold of {threshold}",
+				"threshold": 70,
+				"alert_condition": "ABOVE",
+				"samples": 5,
+				"violating_samples": 3,
+				"dealerting_samples": 5
+			}
+	  ]
+    },
+	{
+      "timeseries": {
+        "key": "cpus_used",
+        "unit": "Count",
+		"displayname": "Master CPUs Used"
+      },
+	  "source": {
+		"stat": "master/cpus_percent"
+	  },
+	  "alert_settings": [
+			{
+				"alert_id": "master_cpus_used",
+				"event_type": "PERFORMANCE_EVENT",
+				"event_name": "High master cpus used",
+				"description": "The {metricname} of {severity} is {alert_condition} the threshold of {threshold}",
+				"threshold": 10,
+				"alert_condition": "ABOVE",
+				"samples": 5,
+				"violating_samples": 3,
+				"dealerting_samples": 5
+			}
+	  ]
+    },
+	{
+      "timeseries": {
+        "key": "cpus_total",
+        "unit": "Count",
+		"displayname": "Master CPUs Total"
+      },
+	  "source": {
+		"stat": "master/cpus_total"
+	  },
+	  "alert_settings": [
+			{
+				"alert_id": "master_cpus_total",
+				"event_type": "PERFORMANCE_EVENT",
+				"event_name": "Low total master cpus",
+				"description": "The {metricname} of {severity} is {alert_condition} the threshold of {threshold}",
+				"threshold": 1,
+				"alert_condition": "BELOW",
+				"samples": 5,
+				"violating_samples": 3,
+				"dealerting_samples": 5
+			}
+	  ]
+    },
+	{
+      "timeseries": {
+        "key": "disk_percent",
+        "unit": "Percent",
+		"displayname": "Master Disk Percent"
+      },
+	  "source": {
+		"stat": "master/disk_percent"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "disk_used",
+        "unit": "MegaByte",
+		"displayname": "Master Disk Used"
+      },
+	  "source": {
+		"stat": "master/disk_used"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "disk_total",
+        "unit": "MegaByte",
+		"displayname": "Master Disk Total"
+      },
+	  "source": {
+		"stat": "master/disk_total"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "mem_percent",
+        "unit": "Percent",
+		"displayname": "Master Memory Percent"
+      },
+	  "source": {
+		"stat": "master/mem_percent"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "mem_used",
+        "unit": "MegaByte",
+		"displayname": "Master Memory Used"
+      },
+	  "source": {
+		"stat": "master/mem_used"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "mem_total",
+        "unit": "MegaByte",
+		"displayname": "Master Memory Total"
+      },
+	  "source": {
+		"stat": "master/mem_total"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "master_elected",
+        "unit": "Count",
+		"displayname": "Master Elected"
+      },
+	  "source": {
+		"stat": "master/elected"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "uptime_secs",
+        "unit": "Second",
+		"displayname": "Master Uptime"
+      },
+	  "source": {
+		"stat": "master/uptime_secs"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "system_cpus_total",
+        "unit": "Count",
+		"displayname": "System CPUS Total"
+      },
+	  "source": {
+		"stat": "system/cpus_total"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "system_load_15min",
+        "unit": "Count",
+		"displayname": "System Load 15min"
+      },
+	  "source": {
+		"stat": "system/load_15min"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "system_load_5min",
+        "unit": "Count",
+		"displayname": "System Load 5min"
+      },
+	  "source": {
+		"stat": "system/load_5min"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "system_load_1min",
+        "unit": "Count",
+		"displayname": "System Load 1min"
+      },
+	  "source": {
+		"stat": "system/load_1min"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "system_mem_free_bytes",
+        "unit": "Byte",
+		"displayname": "System Memory Free"
+      },
+	  "source": {
+		"stat": "system/mem_free_bytes"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "system_total_free_bytes",
+        "unit": "Byte",
+		"displayname": "System Total Memory"
+      },
+	  "source": {
+		"stat": "system/mem_total_bytes"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "slave_registrations",
+        "unit": "Count",
+		"displayname": "Slave Registrations"
+      },
+	  "source": {
+		"stat": "master/slave_registrations"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "slave_removals",
+        "unit": "Count",
+		"displayname": "Slave Removals"
+      },
+	  "source": {
+		"stat": "master/slave_removals"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "slave_reregistrations",
+        "unit": "Count",
+		"displayname": "Slave Re-Registrations"
+      },
+	  "source": {
+		"stat": "master/slave_reregistrations"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "slave_shutdowns_scheduled",
+        "unit": "Count",
+		"displayname": "Slave Shutdowns Scheduled"
+      },
+	  "source": {
+		"stat": "master/slave_shutdowns_scheduled"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "slave_shutdowns_canceled",
+        "unit": "Count",
+		"displayname": "Slave Shutdowns Canceled"
+      },
+	  "source": {
+		"stat": "master/slave_shutdowns_canceled"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "slave_shutdowns_completed",
+        "unit": "Count",
+		"displayname": "Slave Shutdowns Completed"
+      },
+	  "source": {
+		"stat": "master/slave_shutdowns_completed"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "slaves_active",
+        "unit": "Count",
+		"displayname": "Slaves Active"
+      },
+	  "source": {
+		"stat": "master/slaves_active"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "slaves_connected",
+        "unit": "Count",
+		"displayname": "Slaves Connected"
+      },
+	  "source": {
+		"stat": "master/slaves_connected"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "slaves_disconnected",
+        "unit": "Count",
+		"displayname": "Slaves Disconnected"
+      },
+	  "source": {
+		"stat": "master/slaves_disconnected"
+	  }
+    },
+	{
+      "timeseries": {
+        "key": "slaves_inactive",
+        "unit": "Count",
+		"displayname": "Slaves Inactive"
+      },
+	  "source": {
+		"stat": "master/slaves_inactive"
+	  }
+    }
+  ],
+  "ui": {
+	"keymetrics": [
+		{
+			"key": "slaves_active",
+			"aggregation": "sum",
+			"displayname": "Slaves Active"
+		},
+		{
+			"key": "slaves_connected",
+			"aggregation": "sum",
+			"displayname": "Slaves Connected"
+		},
+		{
+			"key": "uptime_secs",
+			"unit": "Second",
+			"aggregation": "sum",
+			"displayname": "Uptime"
+		}
+	],
+	"keycharts": [
+		{
+			"group": "Master CPU",
+			"title": "Master CPU Percent",
+			"description": "",
+			"series": [
+				{
+					"key": "cpus_percent",
+					"displayname": "Percentage of allocated CPUs",
+					"aggregation": "avg",
+					"seriestype": "line",
+					"stacked": false,
+					"color": "#e31a1c"
+				}
+			]
+		},
+		{
+			"group": "Master CPU",
+			"title": "Master CPU Used",
+			"description": "",
+			"series": [
+				{
+					"key": "cpus_used",
+					"displayname": "Number of allocated CPUs",
+					"aggregation": "avg",
+					"seriestype": "line",
+					"stacked": false,
+					"color": "##1a1de3"
+				},
+				{
+					"key": "cpus_total",
+					"displayname": "Number of CPUs",
+					"aggregation": "avg",
+					"seriestype": "line",
+					"stacked": false,
+					"color": "#e31a1c"
+				}
+			]
+		},
+		{
+			"group": "Master Memory",
+			"title": "Master Memory Percent",
+			"description": "",
+			"series": [
+				{
+					"key": "mem_percent",
+					"displayname": "Percentage of allocated memory",
+					"aggregation": "avg",
+					"seriestype": "line",
+					"stacked": false,
+					"color": "#e31a1c"
+				}
+			]
+		},
+		{
+			"group": "Master Memory",
+			"title": "Master Memory Used",
+			"description": "",
+			"series": [
+				{
+					"key": "mem_used",
+					"displayname": "Allocated memory in MB",
+					"aggregation": "avg",
+					"seriestype": "line",
+					"stacked": false,
+					"color": "#1a1de3"
+				},
+				{
+					"key": "mem_total",
+					"displayname": "Memory in MB",
+					"aggregation": "avg",
+					"seriestype": "line",
+					"stacked": false,
+					"color": "#e31a1c"
+				}
+			]
+		},
+		{
+			"group": "Master Disk",
+			"title": "Master Disk Percent",
+			"description": "",
+			"series": [
+				{
+					"key": "disk_percent",
+					"displayname": "Percentage of allocated disk space",
+					"aggregation": "avg",
+					"seriestype": "line",
+					"stacked": false,
+					"color": "#e31a1c"
+				}
+			]
+		},
+		{
+			"group": "Master Disk",
+			"title": "Master Disk Used",
+			"description": "",
+			"series": [
+				{
+					"key": "disk_used",
+					"displayname": "Allocated disk space in MB",
+					"aggregation": "avg",
+					"seriestype": "line",
+					"stacked": false,
+					"color": "#1a1de3"
+				},
+				{
+					"key": "disk_total",
+					"displayname": "Disk space in MB",
+					"aggregation": "avg",
+					"seriestype": "line",
+					"stacked": false,
+					"color": "#e31a1c"
+				}
+			]
+		}
+	],
+	"charts": []
+  },
+  "configUI": {
+	"displayname": "Openshift Plugin",
+	"properties": [
+		{"key" : "user", "displayName": "Username", "displayOrder" : 1, "displayHint": "Username" },
+		{"key" : "password", "displayName": "Password", "displayOrder": 2, "displayHint": "Password"},
+		{"key" : "domain", "displayName": "Domain", "displayOrder": 3, "displayHint": "Openshift Domain"},
+		{"key" : "port", "displayName": "Port", "displayOrder": 4, "displayHint": "Port"},
+		{"key" : "uri", "displayName": "Uri", "displayOrder": 5, "displayHint": "Metrics Uri"}
+	]
+  },
+  "properties": [
+	{
+		"key": "user",
+		"type": "String",
+		"defaultValue": "",
+		"displayOrder": 1
+	},
+	{
+		"key": "password",
+		"type": "Password",
+		"defaultValue": "",
+		"displayOrder": 2
+	},
+	{
+		"key": "domain",
+		"type": "String",
+		"defaultValue": "localhost",
+		"displayOrder": 3
+	},
+	{
+		"key": "port",
+		"type": "String",
+		"defaultValue": "80",
+		"displayOrder": 4
+	},
+	{
+		"key": "uri",
+		"type": "String",
+		"defaultValue": "/metrics/snapshot",
+		"displayOrder": 5
+	}
+  ]
+}
